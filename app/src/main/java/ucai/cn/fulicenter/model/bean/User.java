@@ -1,7 +1,7 @@
 package ucai.cn.fulicenter.model.bean;
 
 
-import cn.ucai.fulicenter.application.I;
+import ucai.cn.fulicenter.application.I;
 
 /**
  * Created by clawpo on 2016/10/21.
