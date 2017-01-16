@@ -1,29 +1,50 @@
 package ucai.cn.fulicenter.controller.activity;
 
-import android.content.DialogInterface;
-import android.support.v7.app.AppCompatActivity;
+import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.RadioButton;
 
-import ucai.cn.fulicenter.R;
+import com.google.android.gms.appindexing.Action;
+import com.google.android.gms.appindexing.AppIndex;
+import com.google.android.gms.appindexing.Thing;
+import com.google.android.gms.common.api.GoogleApiClient;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener{
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import ucai.cn.fulicenter.R;
+import ucai.cn.fulicenter.controller.fragment.NewGoodFragment;
+
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     RadioButton[] mRadioButtons;
-    int currentIndex,index;
+    FragmentTransaction transaction;
+    NewGoodFragment newGoodFragment;
+    int currentIndex, index;
+    @BindView(R.id.layout_newgoods)
+    RadioButton layoutNewgoods;
+    @BindView(R.id.layout_boutique)
+    RadioButton layoutBoutique;
+    @BindView(R.id.layout_categories)
+    RadioButton layoutCategories;
+    @BindView(R.id.layout_cart)
+    RadioButton layoutCart;
+    @BindView(R.id.layout_self)
+    RadioButton layoutSelf;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mRadioButtons = new RadioButton[5];
-        mRadioButtons[0] = (RadioButton) findViewById(R.id.layout_newgoods);
-        mRadioButtons[1] = (RadioButton) findViewById(R.id.layout_boutique);
-        mRadioButtons[2] = (RadioButton) findViewById(R.id.layout_categories);
-        mRadioButtons[3] = (RadioButton) findViewById(R.id.layout_cart);
-        mRadioButtons[4] = (RadioButton) findViewById(R.id.layout_self);
-        for (int i=0;i<mRadioButtons.length;i++) {
+        ButterKnife.bind(this);
+        newGoodFragment = new NewGoodFragment();
+        transaction = getSupportFragmentManager().beginTransaction();
+        mRadioButtons = new RadioButton[]{layoutNewgoods,layoutBoutique,layoutCategories,
+                layoutCart,layoutSelf};
+        for (int i = 0; i < mRadioButtons.length; i++) {
             mRadioButtons[i].setOnClickListener(this);
         }
     }
@@ -31,31 +52,33 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.layout_newgoods:
-                index=0;
+                index = 0;
+                transaction.replace(R.id.mFrame,newGoodFragment).commit();
                 break;
             case R.id.layout_boutique:
-                index=1;
+                index = 1;
                 break;
             case R.id.layout_categories:
-                index=2;
+                index = 2;
                 break;
             case R.id.layout_cart:
-                index=3;
+                index = 3;
 
                 break;
             case R.id.layout_self:
-                index=4;
+                index = 4;
                 break;
         }
         Log.e("main", "index=" + index);
-        if (index!=currentIndex) {
+        if (index != currentIndex) {
 
             checkButton();
 
         }
     }
+
     private void checkButton() {
-        for (int i=0;i<mRadioButtons.length;i++) {
+        for (int i = 0; i < mRadioButtons.length; i++) {
             if (index != i) {
                 mRadioButtons[i].setChecked(false);
             } else {
@@ -64,4 +87,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
         currentIndex = index;
     }
+
+
 }
