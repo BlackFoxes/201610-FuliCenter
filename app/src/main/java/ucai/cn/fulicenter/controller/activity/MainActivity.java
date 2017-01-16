@@ -1,28 +1,23 @@
 package ucai.cn.fulicenter.controller.activity;
 
-import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.RadioButton;
 
-import com.google.android.gms.appindexing.Action;
-import com.google.android.gms.appindexing.AppIndex;
-import com.google.android.gms.appindexing.Thing;
-import com.google.android.gms.common.api.GoogleApiClient;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import ucai.cn.fulicenter.R;
+import ucai.cn.fulicenter.controller.fragment.BoutiqueFragment;
 import ucai.cn.fulicenter.controller.fragment.NewGoodFragment;
+
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     RadioButton[] mRadioButtons;
-    FragmentTransaction transaction;
     NewGoodFragment newGoodFragment;
+    BoutiqueFragment boutiqueFragment;
     int currentIndex, index;
     @BindView(R.id.layout_newgoods)
     RadioButton layoutNewgoods;
@@ -41,7 +36,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         newGoodFragment = new NewGoodFragment();
-        transaction = getSupportFragmentManager().beginTransaction();
+        boutiqueFragment = new BoutiqueFragment();
+         getSupportFragmentManager().beginTransaction()
+        .add(R.id.mFrame, newGoodFragment)
+        .add(R.id.mFrame,boutiqueFragment).hide(boutiqueFragment)
+                .show(newGoodFragment).commit();
         mRadioButtons = new RadioButton[]{layoutNewgoods,layoutBoutique,layoutCategories,
                 layoutCart,layoutSelf};
         for (int i = 0; i < mRadioButtons.length; i++) {
@@ -53,10 +52,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         switch (v.getId()) {
             case R.id.layout_newgoods:
                 index = 0;
-                transaction.replace(R.id.mFrame,newGoodFragment).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.mFrame, newGoodFragment).commit();
                 break;
             case R.id.layout_boutique:
                 index = 1;
+                getSupportFragmentManager().beginTransaction().replace(R.id.mFrame,boutiqueFragment).commit();
                 break;
             case R.id.layout_categories:
                 index = 2;
