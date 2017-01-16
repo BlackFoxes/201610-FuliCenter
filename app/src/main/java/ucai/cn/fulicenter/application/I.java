@@ -54,7 +54,7 @@ public interface I {
     
     int NEW_GOOD=0;
     int CATEGORY_GOOD=1;
-    int CAT_ID=0;
+    String CAT_ID="cat_id";
     String BROADCAST_UPDATA_CART = "cn.ucai.fulicenter.update.cart";
     int CART_CHECKED_DEFAULT = 0;
 

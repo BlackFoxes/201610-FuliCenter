@@ -23,7 +23,7 @@ public class CartBean {
     private int id;
     private String userName;
     private int goodsId;
-    private GoodsDetailsBean[] goods;
+    private GoodsDetailsBean goods;
     private int count;
     private boolean isChecked;
     private boolean checked;
@@ -78,11 +78,11 @@ public class CartBean {
         this.checked = checked;
     }
 
-    public GoodsDetailsBean[] getGoods() {
+    public GoodsDetailsBean getGoods() {
         return goods;
     }
 
-    public void setGoods(GoodsDetailsBean[] goods) {
+    public void setGoods(GoodsDetailsBean goods) {
         this.goods = goods;
     }
 
@@ -92,7 +92,7 @@ public class CartBean {
                 "id=" + id +
                 ", userName='" + userName + '\'' +
                 ", goodsId=" + goodsId +
-                ", goods=" + Arrays.toString(goods) +
+                ", goods=" + goods +
                 ", count=" + count +
                 ", isChecked=" + isChecked +
                 ", checked=" + checked +
