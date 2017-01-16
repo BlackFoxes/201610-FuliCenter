@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="@color/white"
+    android:layout_height="match_parent">
+    <ImageView
+        android:id="@+id/ivBoutique"
+        android:src="@drawable/category_child"
+        android:layout_width="200dp"
+        android:layout_height="200dp" />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="200dp"
+        android:orientation="vertical"
+        android:layout_marginLeft="220dp"
+        >
+        <TextView
+            android:id="@+id/boutiqueTitle"
+            android:singleLine="true"
+            android:layout_weight="1"
+            android:ellipsize="end"
+            android:textColor="@color/list_item_title"
+            android:gravity="center"
+            android:text="你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/boutiqueDsc"
+            android:singleLine="true"
+            android:ellipsize="end"
+            android:textColor="@color/list_item_name"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/boutiqueName"
+            android:singleLine="true"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:textColor="@color/list_item_des"
+            android:layout_weight="1"
+            android:text="你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+</RelativeLayout>
