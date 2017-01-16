@@ -44,6 +44,7 @@ public class NewGoodFragment extends Fragment {
     RecyclerView rvRefresh;
     @BindView(R.id.swRefresh)
     SwipeRefreshLayout swRefresh;
+
     @Override
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -105,7 +106,7 @@ public class NewGoodFragment extends Fragment {
         mGridLayoutManager.setOrientation(GridLayoutManager.VERTICAL);
         rvRefresh.setLayoutManager(mGridLayoutManager);
         rvRefresh.setAdapter(mAdapter);
-        rvRefresh.addItemDecoration(new Decoration(10));
+        rvRefresh.addItemDecoration(new Decoration(10,0));
     }
     private void downloadData(final int action, int
                               pageId) {
